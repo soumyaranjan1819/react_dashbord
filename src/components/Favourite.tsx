@@ -8,14 +8,12 @@ import {
   ListItemText,
 } from "@mui/material";
 import CircleIcon from "@mui/icons-material/Circle";
+import { favoritePages } from "../data";
+import { recentPages } from "../data";
+
 
 const PageSwitcher = () => {
   const [activeTab, setActiveTab] = useState("favorites");
-
-  // Sample data for favorites and recent pages
-  const favoritePages = ["Overview", "Projects"];
-  const recentPages = ["Page 1", "Page 2"];
-
   return (
     <Box
       sx={{

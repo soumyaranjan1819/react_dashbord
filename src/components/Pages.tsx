@@ -11,11 +11,7 @@ import {
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import UserProfileIcon from "../assets/icons/userProfile.svg";
-import AccountIcon from "../assets/icons/account.svg";
-import CorporateIcon from "../assets/icons/corporate.svg";
-import BlogIcon from "../assets/icons/blog.svg";
-import SocialIcon from "../assets/icons/social.svg";
+import { pages } from "../data";
 
 const Pages = () => {
   const [open, setOpen] = useState<string | null>(null);
@@ -23,19 +19,6 @@ const Pages = () => {
   const handleToggle = (id: string) => {
     setOpen(open === id ? null : id);
   };
-
-  const pages = [
-    {
-      id: "userProfile",
-      label: "User Profile",
-      icon: UserProfileIcon,
-      subItems: ["Overview", "Projects", "Campaigns", "Documents", "Followers"],
-    },
-    { id: "account", label: "Account", icon: AccountIcon, subItems: [] },
-    { id: "corporate", label: "Corporate", icon: CorporateIcon, subItems: [] },
-    { id: "blog", label: "Blog", icon: BlogIcon, subItems: [] },
-    { id: "social", label: "Social", icon: SocialIcon, subItems: [] },
-  ];
 
   return (
     <Box
@@ -72,8 +55,7 @@ const Pages = () => {
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
-              cursor: "pointer"
-            //   paddingLeft: "4px",
+              cursor: "pointer",
             }}
           >
             <ListItem

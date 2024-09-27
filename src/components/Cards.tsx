@@ -1,0 +1,33 @@
+import { Grid } from '@mui/material';
+import { statsData } from "../data/index"; 
+import CardItem from "./card"; 
+
+const StatsCards = () => {
+  return (
+    <Grid
+      container
+      spacing={2}
+      sx={{
+        maxWidth: '432px', // Set max width to match the Figma design
+      }}
+    >
+      {statsData.map((item) => (
+        <Grid
+          item
+          xs={12} // Full width on small screens
+          sm={6}  // Half width on larger screens
+          key={item.id}
+        >
+          <CardItem
+            title={item.title}
+            value={item.value}
+            growth={item.growth}
+            backgroundColor={item.backgroundColor}
+          />
+        </Grid>
+      ))}
+    </Grid>
+  );
+};
+
+export default StatsCards;

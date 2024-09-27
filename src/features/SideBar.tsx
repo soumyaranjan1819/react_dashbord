@@ -16,7 +16,7 @@ const Sidebar = () => {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'flex-start', 
-        border: "1px solid blue"
+        // border: "1px solid blue"
       }}
     >
       
