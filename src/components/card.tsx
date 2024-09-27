@@ -1,9 +1,7 @@
-// Card.tsx
 import { Card, CardContent, Typography, Box } from "@mui/material";
 import ArrowRise from "../assets/icons/ArrowRise.svg";
 import ArrowFall from "../assets/icons/ArrowFall.svg";
 
-// Define the types for the props
 interface CardItemProps {
   title: string;
   value: string | number;
@@ -17,7 +15,6 @@ const CardItem: React.FC<CardItemProps> = ({
   growth,
   backgroundColor,
 }) => {
-  // Determine the color and icon based on growth value
   const growthValue = parseFloat(growth);
   const isPositiveGrowth = growthValue > 0;
   const growthColor = isPositiveGrowth ? "green" : "red";
@@ -58,14 +55,12 @@ const CardItem: React.FC<CardItemProps> = ({
           <Typography variant="h5" sx={{ fontWeight: "600", fontSize: "24px" }}>
             {value}
           </Typography>
-
-          {/* Percentage with trend icon */}
           <Box sx={{ display: "flex", alignItems: "center", gap: "4px" }}>
+
             <Typography variant="body2" sx={{ color: growthColor }}>
               {growth}
             </Typography>
-
-            {/* Display the local image as the growth icon */}
+            
             <img
               src={GrowthIcon}
               alt="Growth icon"

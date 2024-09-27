@@ -8,14 +8,14 @@ const StatsCards = () => {
       container
       spacing={2}
       sx={{
-        maxWidth: '432px', // Set max width to match the Figma design
+        maxWidth: '432px', 
       }}
     >
       {statsData.map((item) => (
         <Grid
           item
-          xs={12} // Full width on small screens
-          sm={6}  // Half width on larger screens
+          xs={12}
+          sm={6}  
           key={item.id}
         >
           <CardItem
