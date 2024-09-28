@@ -9,6 +9,15 @@ import Orlando from "../assets/icons/Orlando.svg"
 import Andi from "../assets/icons/Andi.svg"
 import Kate from "../assets/icons/Kate.svg"
 import Koray from "../assets/icons/Koray.svg"
+import BugIcon from '../assets/icons/Bug.svg'; 
+import UserIcon from '../assets/icons/User.svg'; 
+import SubscribedIcon from '../assets/icons/Broadcast.svg'; 
+import User1 from '../assets/icons/3D05.svg'
+import User2 from '../assets/icons/3D08.svg'
+import User3 from '../assets/icons/Female05.svg'
+import User4 from '../assets/icons/Male07.svg'
+import User5 from '../assets/icons/Male11.svg'
+
 
 import {
   PagesItems,
@@ -41,6 +50,68 @@ export const contactsData = [
   { id: 5, name: 'Kate Morrison', icon: Kate},
   { id: 6, name: 'Koray Okumus', icon: Koray},
 ];
+
+export const activityData = [
+  {
+    id: 1,
+    message: 'You have a bug that needs to be resolved',
+    time: 'Just now',
+    icon: User1,
+  },
+  {
+    id: 2,
+    message: 'Released a new version',
+    time: '59 minutes ago',
+    icon: User2,
+  },
+  {
+    id: 3,
+    message: 'Submitted a bug',
+    time: '12 hours ago',
+    icon: User3,
+  },
+  {
+    id: 4,
+    message: 'Modified A data in Page X',
+    time: 'Today, 11:59 AM',
+    icon: User4,
+  },
+  {
+    id: 5,
+    message: 'Deleted a page in Project X',
+    time: 'Feb 2, 2023',
+    icon: User5,
+  },
+];
+
+export const notificationsData = [
+  {
+    id: 1,
+    icon: BugIcon, 
+    message: 'You have a bug that needs to be resolved',
+    time: 'Just now',
+  },
+  {
+    id: 2,
+    icon: UserIcon, 
+    message: 'New user registered',
+    time: '59 minutes ago',
+  },
+  {
+    id: 3,
+    icon: BugIcon, 
+    message: 'You have a bug that needs to be resolved',
+    time: '12 hours ago',
+  },
+  {
+    id: 4,
+    icon: SubscribedIcon, 
+    message: 'Andi Lane subscribed to you',
+    time: 'Today, 11:59 AM',
+  },
+];
+
+
 
 
 export const statsData: StatsDataItem[] = [

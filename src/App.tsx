@@ -3,7 +3,7 @@ import SideBar from "./features/LeftSideBar";
 import Main from "./features/Main";
 import "./App.css";
 import { useState } from "react";
-import Contact from "./components/Contacts";
+import RightSideBar from "./features/RightSideBar";
 
 function App() {
   const [leftSidebarOpen, setLeftSidebarOpen] = useState(true);
@@ -29,7 +29,7 @@ function App() {
         </Grid>
 
         <Grid item xs={1.3} >
-        <Contact/>
+        <RightSideBar/>
       </Grid>
       </Grid>
     </Box>
