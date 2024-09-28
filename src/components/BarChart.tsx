@@ -71,9 +71,7 @@ const options: ChartOptions<'bar'> = {
         color: 'rgba(28, 28, 28, 0.4)', 
         stepSize: 10, 
         maxTicksLimit: 4, 
-        callback: function (value) {
-          return value + 'M'; 
-        },
+        callback: (value) => `${value}M`,
       },
       border: {
         display: false, 
