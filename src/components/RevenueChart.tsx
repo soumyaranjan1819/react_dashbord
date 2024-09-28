@@ -16,13 +16,14 @@ const data = [
 const RevenueChart = () => {
   return (
     <Box sx={{
-      padding: '24px', // Padding as per the layout
+      marginTop:"24px",
+      padding: '24px', 
       backgroundColor: '#F4F9FF',
-      borderRadius: '16px', // Border radius as per the layout
+      borderRadius: '16px', 
       width: '100%',
-      maxWidth: '662px', // Max width as per the layout
-      minWidth: '662px', // Min width as per the layout
-      height: 'auto', // Hug content (auto height)
+      maxWidth: '650px', 
+      minWidth: '650px', 
+      height: 'auto', 
       boxSizing: 'border-box',
       // border: "1px solid red"
     }}>

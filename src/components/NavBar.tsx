@@ -20,12 +20,13 @@ import ReplayIcon from "../assets/icons/ClockCounterClockwise.svg";
 import NotificationsIcon from "../assets/icons/Bell.svg";
 import MoreVertIcon from "@mui/icons-material/MoreVert"; // 3 dot vertical menu
 import { useTheme } from "@mui/material/styles"; // Hook to get the theme breakpoints
+import { useColorTheme } from '../context/ThemeContext';
 
 const Navbar = () => {
   // State for handling dropdown menu
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const isMenuOpen = Boolean(anchorEl);
-
+  const { toggleTheme } = useColorTheme();
   const theme = useTheme(); // To access the theme breakpoints
   const isMobile = useMediaQuery(theme.breakpoints.down("sm")); // This will be true for screens less than 'sm'
 
@@ -120,6 +121,7 @@ const Navbar = () => {
                 alt="Brightness Icon"
                 width="24"
                 height="24"
+                onClick={toggleTheme}
               />
             </IconButton>
             <IconButton color="inherit">

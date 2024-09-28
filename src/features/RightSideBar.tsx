@@ -13,7 +13,6 @@ const RightSideBar = () => {
         display: 'flex',
         flexDirection: 'column',
         borderLeft: '1px solid rgba(28, 28, 28, 0.1)', 
-        position: 'fixed', 
         left: '1160px',
       }}
     >

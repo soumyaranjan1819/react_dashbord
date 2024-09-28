@@ -8,7 +8,7 @@ const StatsCards = () => {
       container
       spacing={2}
       sx={{
-        maxWidth: '432px', 
+        // maxWidth: '432px', 
       }}
     >
       {statsData.map((item) => (
