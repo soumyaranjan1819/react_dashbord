@@ -5,6 +5,7 @@ import BarChart from "../components/BarChart";
 import DonutChart from "../components/DoughnutChart";
 import ProductTable from "../components/Table";
 import RevenueChart from "../components/RevenueChart";
+// import RevenueMap from "../components/RevenueMap";
 
 const Main = () => {
   return (
@@ -13,7 +14,7 @@ const Main = () => {
         // overflowY: "auto"
       }}>
         <Navbar />
-        <Grid container spacing={10}>
+        <Grid container spacing={0}>
           {/* Cards and BarChart in a single row */}
           <Grid item xs={12} md={6}>
             <Cards />
@@ -47,9 +48,9 @@ const Main = () => {
           <Grid item xs={12} md={6}>
             <RevenueChart />
           </Grid>
-          {/* <Grid item xs={12} md={6}>
-            <DonutChart />
-          </Grid> */}
+          <Grid item xs={12} md={6}>
+            {/* <RevenueMap /> */}
+          </Grid>
         </Grid>
       </Box>
     </>

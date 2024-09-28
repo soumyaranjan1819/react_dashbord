@@ -3,9 +3,14 @@ import AccountIcon from "../assets/icons/account.svg";
 import CorporateIcon from "../assets/icons/corporate.svg";
 import BlogIcon from "../assets/icons/blog.svg";
 import SocialIcon from "../assets/icons/social.svg";
+import Natali from "../assets/icons/Natali.svg"
+import Drew from "../assets/icons/Drew.svg"
+import Orlando from "../assets/icons/Orlando.svg"
+import Andi from "../assets/icons/Andi.svg"
+import Kate from "../assets/icons/Kate.svg"
+import Koray from "../assets/icons/Koray.svg"
+
 import {
-  // CustomerAndOrderStatsItems,
-  // RevenueAndGrowthStatsItems,
   PagesItems,
   ProjectionsVsActualsItems,
   RevenueGraphDataItems,
@@ -27,6 +32,16 @@ export const pages: PagesItems[] = [
   { id: "blog", label: "Blog", icon: BlogIcon, subItems: [] },
   { id: "social", label: "Social", icon: SocialIcon, subItems: [] },
 ];
+
+export const contactsData = [
+  { id: 1, name: 'Natali Craig', icon: Natali }, 
+  { id: 2, name: 'Drew Cano', icon: Drew },
+  { id: 3, name: 'Orlando Diggs', icon: Orlando},
+  { id: 4, name: 'Andi Lane', icon: Andi},
+  { id: 5, name: 'Kate Morrison', icon: Kate},
+  { id: 6, name: 'Koray Okumus', icon: Koray},
+];
+
 
 export const statsData: StatsDataItem[] = [
   {

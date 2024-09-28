@@ -1,8 +1,9 @@
 import { Box, Grid } from "@mui/material";
-import SideBar from "./features/SideBar";
+import SideBar from "./features/LeftSideBar";
 import Main from "./features/Main";
 import "./App.css";
 import { useState } from "react";
+import Contact from "./components/Contacts";
 
 function App() {
   const [leftSidebarOpen, setLeftSidebarOpen] = useState(true);
@@ -27,9 +28,9 @@ function App() {
           <Main />
         </Grid>
 
-        {/*<Grid item xs={1.3} >
-        <SideBar/>
-      </Grid> */}
+        <Grid item xs={1.3} >
+        <Contact/>
+      </Grid>
       </Grid>
     </Box>
   );
