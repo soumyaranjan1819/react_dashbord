@@ -21,10 +21,12 @@ const RevenueMap = () => {
     <Box
       sx={{
         marginTop: "24px",
+        marginLeft:"20px",
         backgroundColor: "#F4F9FF",
         p: 2,
         borderRadius: "12px",
-        width: "72%",
+        width: "74%",
+        maxHeight:"40vh",
         display: "flex",
         flexDirection: "column",
         justifyContent:"center",

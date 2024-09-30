@@ -46,3 +46,14 @@ export interface TotalSalesItems {
   amount: number;
   percentage: number;
 }
+
+export interface Order {
+  id: string;
+  user: string;
+  project: string;
+  address: string;
+  date: string;
+  status: string;
+  statusColor: string;
+  icon: string;
+}

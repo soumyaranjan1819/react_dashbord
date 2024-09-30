@@ -9,3 +9,24 @@
   width: 100%;
   height: 98vh;
 }
+
+/* Global scrollbar styling */
+* {
+  scrollbar-width: thin; /* For Firefox */
+  scrollbar-color: #c4c4c4 transparent; /* For Firefox */
+}
+
+*::-webkit-scrollbar {
+  width: 8px; /* Width of the vertical scrollbar */
+  height: 8px; /* Height of the horizontal scrollbar */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #c4c4c4; /* Color of the scrollbar thumb */
+  border-radius: 10px; /* Rounded corners for scrollbar thumb */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent; /* Background of the scrollbar track */
+}
+

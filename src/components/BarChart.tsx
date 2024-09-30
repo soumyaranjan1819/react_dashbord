@@ -84,7 +84,7 @@ const Charts = () => {
   return (
     <Box
       sx={{
-        maxWidth: '432px',
+        maxWidth: '30vw',
         height: '252px',
         backgroundColor: '#F4F9FF',
         borderRadius: '16px',

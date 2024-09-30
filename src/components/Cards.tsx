@@ -8,14 +8,14 @@ const StatsCards = () => {
       container
       spacing={2}
       sx={{
-        // maxWidth: '432px', 
+        maxWidth: '30vw', 
       }}
     >
       {statsData.map((item) => (
         <Grid
           item
           xs={12}
-          sm={6}  
+          sm={6}
           key={item.id}
         >
           <CardItem

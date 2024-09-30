@@ -33,12 +33,12 @@ const ProductTable: React.FC = () => {
   return (
     <Box
       sx={{
-        marginTop:"24px",
+        marginTop: '24px',
         padding: '24px',
         backgroundColor: '#F4F9FF',
         borderRadius: '16px',
-        width: '100%',
-        maxWidth: '650px',
+        width: '90vw',
+        maxWidth: '42.13vw',
         minWidth: '650px',
         height: 'auto',
         boxSizing: 'border-box',
@@ -57,7 +57,7 @@ const ProductTable: React.FC = () => {
 
       {/* Table container */}
       <TableContainer component={Paper} sx={{ boxShadow: 'none', backgroundColor: 'transparent' }}>
-        <Table sx={{ width: '100%' }} aria-label="simple table">
+        <Table sx={{ width: '100%', borderCollapse: 'separate', borderSpacing: '0 10px' }} aria-label="simple table">
           <TableHead>
             <TableRow>
               <TableCell sx={{ fontWeight: '600', fontSize: '14px' }}>Name</TableCell>
@@ -75,7 +75,14 @@ const ProductTable: React.FC = () => {
 
           <TableBody>
             {productData.map((product) => (
-              <TableRow key={product.name}>
+              <TableRow
+                key={product.name}
+                sx={{
+                  '& .MuiTableCell-root': {
+                    borderBottom: 'none',
+                  },
+                }}
+              >
                 <TableCell component="th" scope="row">
                   {product.name}
                 </TableCell>

@@ -20,12 +20,11 @@ const RevenueChart = () => {
       padding: '24px', 
       backgroundColor: '#F4F9FF',
       borderRadius: '16px', 
-      width: '100%',
-      maxWidth: '650px', 
+      width: '90vw',
+      maxWidth: '42.13vw', 
       minWidth: '650px', 
       height: 'auto', 
       boxSizing: 'border-box',
-      // border: "1px solid red"
     }}>
       {/* Header Section */}
       <Box display="flex" alignItems="center" justifyContent="space-around" mb={2} ml={2}>
