@@ -18,17 +18,16 @@ import SearchIcon from "../assets/icons/Search.svg";
 import BrightIcon from "../assets/icons/Sun.svg";
 import ReplayIcon from "../assets/icons/ClockCounterClockwise.svg";
 import NotificationsIcon from "../assets/icons/Bell.svg";
-import MoreVertIcon from "@mui/icons-material/MoreVert"; // 3 dot vertical menu
-import { useTheme } from "@mui/material/styles"; // Hook to get the theme breakpoints
+import MoreVertIcon from "@mui/icons-material/MoreVert"; 
+import { useTheme } from "@mui/material/styles"; 
 import { useColorTheme } from '../context/ThemeContext';
 
 const Navbar = () => {
-  // State for handling dropdown menu
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const isMenuOpen = Boolean(anchorEl);
   const { toggleTheme } = useColorTheme();
   const theme = useTheme(); // To access the theme breakpoints
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm")); // This will be true for screens less than 'sm'
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm")); 
 
   const handleMenuOpen = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
@@ -115,25 +114,14 @@ const Navbar = () => {
 
           {/* Icons: Hidden on medium and smaller screens (md and below) */}
           <Box sx={{ display: { xs: "none", md: "flex" }, gap: "16px" }}>
-            <IconButton color="inherit">
-              <img
-                src={BrightIcon}
-                alt="Brightness Icon"
-                width="24"
-                height="24"
-                onClick={toggleTheme}
-              />
+            <IconButton color="inherit" onClick={toggleTheme}>
+              <img src={BrightIcon} alt="Brightness Icon" width="24" height="24" />
             </IconButton>
             <IconButton color="inherit">
               <img src={ReplayIcon} alt="Replay Icon" width="24" height="24" />
             </IconButton>
             <IconButton color="inherit">
-              <img
-                src={NotificationsIcon}
-                alt="Notifications Icon"
-                width="24"
-                height="24"
-              />
+              <img src={NotificationsIcon} alt="Notifications Icon" width="24" height="24" />
             </IconButton>
           </Box>
 
@@ -158,23 +146,13 @@ const Navbar = () => {
             transformOrigin={{ vertical: "top", horizontal: "right" }}
           >
             <MenuItem onClick={handleMenuClose}>
-              <img
-                src={BrightIcon}
-                alt="Brightness Icon"
-                width="24"
-                height="24"
-              />
+              <img src={BrightIcon} alt="Brightness Icon" width="24" height="24" />
             </MenuItem>
             <MenuItem onClick={handleMenuClose}>
               <img src={ReplayIcon} alt="Replay Icon" width="24" height="24" />
             </MenuItem>
             <MenuItem onClick={handleMenuClose}>
-              <img
-                src={NotificationsIcon}
-                alt="Notifications Icon"
-                width="24"
-                height="24"
-              />
+              <img src={NotificationsIcon} alt="Notifications Icon" width="24" height="24" />
             </MenuItem>
           </Menu>
         </Box>

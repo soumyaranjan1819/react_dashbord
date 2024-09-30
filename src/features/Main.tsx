@@ -1,12 +1,11 @@
 import { Grid, Box, Typography } from "@mui/material";
 import Navbar from "../components/NavBar";
-import Cards from "../components/Cards";
+import Cards from "../components/StatsCards";
 import BarChart from "../components/BarChart";
 import DonutChart from "../components/DoughnutChart";
 import ProductTable from "../components/Table";
 import RevenueChart from "../components/RevenueChart";
 import RevenueMap from "../components/RevenueMap";
-// import RevenueMap from "../components/RevenueMap";
 
 const Main = () => {
   return (
@@ -14,8 +13,8 @@ const Main = () => {
       <Navbar />
       <Box
         sx={{
-          overflow:"auto",
-          height: "1000px",
+          overflow: "auto",
+          height: "850px",
           margin: "0 0 0 28px",
         }}
       >
@@ -43,7 +42,6 @@ const Main = () => {
         </Grid>
 
         <Grid container spacing={3}>
-          {/* Cards and BarChart in a single row */}
           <Grid item xs={12} md={5.5}>
             <Cards />
           </Grid>
@@ -62,7 +60,6 @@ const Main = () => {
         </Grid>
 
         <Grid container spacing={50}>
-          {/* donut and table in a single row */}
           <Grid item xs={12} md={6}>
             <ProductTable />
           </Grid>

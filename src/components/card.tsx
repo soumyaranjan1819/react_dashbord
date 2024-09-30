@@ -27,7 +27,7 @@ const CardItem: React.FC<CardItemProps> = ({
         justifyContent: "space-between",
         flexDirection: "column",
         maxWidth: "14.02vw",
-        height: "16vh",
+        height: "13.2vh",
         borderRadius: "16px",
         backgroundColor: backgroundColor,
         boxShadow: "none",

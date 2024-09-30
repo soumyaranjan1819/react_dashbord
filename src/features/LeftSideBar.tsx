@@ -4,7 +4,7 @@ import UserProfile from '../components/UserProfile';
 import PageSwitcher from '../components/Favourite';
 import Dashboard from '../components/Dashboard';
 import Pages from '../components/Pages';
-const Sidebar = () => {
+const LeftSidebar = () => {
   return (
     <Box
       sx={{
@@ -16,7 +16,6 @@ const Sidebar = () => {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'flex-start', 
-        // border: "1px solid blue"
       }}
     >
       
@@ -28,4 +27,4 @@ const Sidebar = () => {
   );
 };
 
-export default Sidebar;
+export default LeftSidebar;

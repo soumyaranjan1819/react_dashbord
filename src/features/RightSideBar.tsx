@@ -14,8 +14,6 @@ const RightSideBar = () => {
         flexDirection: 'column',
         borderLeft: '1px solid rgba(28, 28, 28, 0.1)', 
         left: '1160px',
-        // overflowY:"auto",
-        // height:"900px"
       }}
     >
       <Notifications />

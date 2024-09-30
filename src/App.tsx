@@ -1,21 +1,22 @@
 import { Box, Grid } from "@mui/material";
-import SideBar from "./features/LeftSideBar";
+import LeftSidebar from "./features/LeftSideBar";
 import Main from "./features/Main";
-import "./App.css";
-import './styles/themes.css';
 import { useState } from "react";
 import RightSideBar from "./features/RightSideBar";
 import { useColorTheme } from "./context/ThemeContext";
+import OrderListTable from "./components/OrderListTable";
+import "./App.css";
+import './styles/themes.css';   //
 
 function App() {
   const [leftSidebarOpen, setLeftSidebarOpen] = useState(true);
   const [rightSidebarOpen, setRightSidebarOpen] = useState(true);
-  const { theme } = useColorTheme();
+  const { theme } = useColorTheme();  //
   return (
-    <div style={{overflowY: "auto"}} className={theme}>
+    <div style={{overflowY: "auto"}} className={theme}> 
       <Grid container>
         <Grid item>
-          <SideBar />
+          <LeftSidebar />
         </Grid>
 
         <Grid
@@ -28,7 +29,7 @@ function App() {
               : 12
           }
         >
-          <Main />
+          <Main/>
         </Grid>
 
         <Grid item xs={1.3} >
