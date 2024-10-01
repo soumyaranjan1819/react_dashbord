@@ -22,10 +22,11 @@ import {
 } from "@mui/icons-material";
 import PaginatedTableRow from "./PaginatedTableRow";
 import { Order } from "../types";
+import { useColorTheme } from "../context/ThemeContext";
 
 interface PaginatedTableProps {
   orders: Order[];
-  setOrders: React.Dispatch<React.SetStateAction<Order[]>>; 
+  setOrders: React.Dispatch<React.SetStateAction<Order[]>>;
   selectedOrders: string[];
   setSelectedOrders: React.Dispatch<React.SetStateAction<string[]>>;
   handleDeleteSelected: () => void;
@@ -38,6 +39,8 @@ const PaginatedTable: React.FC<PaginatedTableProps> = ({
   setSelectedOrders,
   handleDeleteSelected,
 }) => {
+  const { theme } = useColorTheme();
+
   // Handle "Select All" functionality
   const handleSelectAllClick = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.checked) {
@@ -48,7 +51,8 @@ const PaginatedTable: React.FC<PaginatedTableProps> = ({
     }
   };
 
-  const areAllSelected = orders.length > 0 && selectedOrders.length === orders.length;
+  const areAllSelected =
+    orders.length > 0 && selectedOrders.length === orders.length;
 
   // Handle deleting a single row
   const handleDeleteRow = (id: string) => {
@@ -56,22 +60,67 @@ const PaginatedTable: React.FC<PaginatedTableProps> = ({
     setOrders(updatedOrders); // Update the orders state
     setSelectedOrders(selectedOrders.filter((orderId) => orderId !== id)); // Remove from selectedOrders if selected
   };
-
   return (
     <Box>
       {/* Table Actions */}
-      <Box display="flex" justifyContent="space-between" alignItems="center" my={2} sx={{ backgroundColor: "rgba(247, 249, 251, 1)", padding: "8px", borderRadius: "8px" }}>
+      <Box
+        display="flex"
+        justifyContent="space-between"
+        alignItems="center"
+        my={2}
+        sx={{
+          backgroundColor:
+            theme === "dark"
+              ? "rgba(255, 255, 255, 0.05)"
+              : "rgba(247, 249, 251, 1)",
+          padding: "8px",
+          borderRadius: "8px",
+        }}
+      >
         <Box display="flex" alignItems="center">
-          <IconButton sx={{ color: "#1C1C1C" }}><Add /></IconButton>
-          <IconButton sx={{ color: "#1C1C1C" }}><FilterList /></IconButton>
-          <IconButton sx={{ color: "#1C1C1C" }}><SwapVert /></IconButton>
+          <IconButton
+            sx={{
+              color:
+                theme === "dark"
+                  ? "rgba(255, 255, 255, 1)"
+                  : "rgba(28, 28, 28, 1)",
+            }}
+          >
+            <Add />
+          </IconButton>
+          <IconButton
+            sx={{
+              color:
+                theme === "dark"
+                  ? "rgba(255, 255, 255, 1)"
+                  : "rgba(28, 28, 28, 1)",
+            }}
+          >
+            <FilterList />
+          </IconButton>
+          <IconButton
+            sx={{
+              color:
+                theme === "dark"
+                  ? "rgba(255, 255, 255, 1)"
+                  : "rgba(28, 28, 28, 1)",
+            }}
+          >
+            <SwapVert />
+          </IconButton>
         </Box>
 
         <Box display="flex" alignItems="center" ml="auto">
           {selectedOrders.length > 1 && (
             <IconButton
               onClick={handleDeleteSelected}
-              sx={{ color: "#1C1C1C", marginRight: "16px" }}
+              sx={{
+                color:
+                  theme === "dark"
+                    ? "rgba(255, 255, 255, 1)"
+                    : "rgba(28, 28, 28, 1)",
+                marginRight: "16px",
+              }}
             >
               <DeleteOutlined />
             </IconButton>
@@ -84,14 +133,39 @@ const PaginatedTable: React.FC<PaginatedTableProps> = ({
               alignItems: "center",
               width: 300,
               padding: "0 8px",
-              border: "1px solid rgba(28, 28, 28, 0.2)",
-              borderRadius: "8px", 
+              border: `1px solid ${
+                theme === "dark"
+                  ? "rgba(255, 255, 255, 0.1)"
+                  : "rgba(28, 28, 28, 0.2)"
+              }`,
+              borderRadius: "8px",
+              backgroundColor:
+                theme === "dark"
+                  ? "rgba(28, 28, 28, 0.2)"
+                  : "rgba(255, 255, 255, 0.1)",
             }}
           >
             <IconButton>
-              <SearchIcon />
+              <SearchIcon
+                sx={{
+                  color:
+                    theme === "dark"
+                      ? "rgba(255, 255, 255, 0.4)"
+                      : "rgba(28, 28, 28, 1)",
+                }}
+              />
             </IconButton>
-            <InputBase sx={{ ml: 1, flex: 1 }} placeholder="Search" />
+            <InputBase
+              sx={{
+                ml: 1,
+                flex: 1,
+                color:
+                  theme === "dark"
+                    ? "rgba(255, 255, 255, 0.4)"
+                    : "rgba(28, 28, 28, 1)",
+              }}
+              placeholder="Search"
+            />
           </Paper>
         </Box>
       </Box>
@@ -99,7 +173,13 @@ const PaginatedTable: React.FC<PaginatedTableProps> = ({
       {/* Table */}
       <TableContainer component={Paper} elevation={0}>
         <Table>
-          <TableHead>
+          <TableHead
+            sx={{
+              backgroundColor:
+                theme === "dark" ? "rgba(28, 28, 28, 0.95)" : "inherit", 
+              width: "100%"
+            }}
+          >
             <TableRow>
               <TableCell padding="checkbox">
                 <Checkbox
@@ -110,12 +190,21 @@ const PaginatedTable: React.FC<PaginatedTableProps> = ({
                   checked={areAllSelected}
                   onChange={handleSelectAllClick}
                   sx={{
-                    color: "#1C1C1C",
+                    color:
+                      theme === "dark"
+                        ? "rgba(198, 199, 248, 1)"
+                        : "rgba(28, 28, 28, 1)",
                     "&.Mui-checked": {
-                      color: "#1C1C1C",
+                      color:
+                        theme === "dark"
+                          ? "rgba(198, 199, 248, 1)"
+                          : "rgba(28, 28, 28, 1)",
                     },
                     "&.MuiCheckbox-indeterminate": {
-                      color: "#1C1C1C",
+                      color:
+                        theme === "dark"
+                          ? "rgba(198, 199, 248, 1)"
+                          : "rgba(28, 28, 28, 1)",
                     },
                     borderRadius: "8px",
                   }}
@@ -127,6 +216,7 @@ const PaginatedTable: React.FC<PaginatedTableProps> = ({
               <TableCell>Address</TableCell>
               <TableCell>Date</TableCell>
               <TableCell>Status</TableCell>
+              <TableCell sx={{ visibility: "hidden" }}>Action</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -136,7 +226,7 @@ const PaginatedTable: React.FC<PaginatedTableProps> = ({
                 order={order}
                 selectedOrders={selectedOrders}
                 setSelectedOrders={setSelectedOrders}
-                handleDeleteRow={handleDeleteRow} 
+                handleDeleteRow={handleDeleteRow}
               />
             ))}
           </TableBody>

@@ -11,24 +11,27 @@ import {
 } from "@mui/material";
 import { MoreHoriz } from "@mui/icons-material";
 import { Order } from "../types";
+import { useColorTheme } from "../context/ThemeContext";
 
 interface PaginatedTableRowProps {
   order: Order;
   selectedOrders: string[];
   setSelectedOrders: React.Dispatch<React.SetStateAction<string[]>>;
-  handleDeleteRow: (id: string) => void; 
+  handleDeleteRow: (id: string) => void;
 }
 
 const PaginatedTableRow: React.FC<PaginatedTableRowProps> = ({
   order,
   selectedOrders,
   setSelectedOrders,
-  handleDeleteRow, 
+  handleDeleteRow,
 }) => {
-  const [hoveredRow, setHoveredRow] = useState<string | null>(null); 
-  const [menuAnchor, setMenuAnchor] = useState<null | HTMLElement>(null); 
+  const [hoveredRow, setHoveredRow] = useState<string | null>(null);
+  const [menuAnchor, setMenuAnchor] = useState<null | HTMLElement>(null);
 
   const isSelected = selectedOrders.includes(order.id);
+
+  const { theme } = useColorTheme();
 
   // Handle clicking on a table row
   const handleRowClick = (id: string) => {
@@ -41,16 +44,16 @@ const PaginatedTableRow: React.FC<PaginatedTableRowProps> = ({
 
   // Handle checkbox click
   const handleCheckboxClick = (event: React.MouseEvent, id: string) => {
-    event.stopPropagation(); 
+    event.stopPropagation();
     handleRowClick(id);
   };
 
   // Handle 3-dot menu
   const handleMenuOpen = (
     event: React.MouseEvent<HTMLButtonElement>,
-    _rowId: string 
+    _rowId: string
   ) => {
-    setMenuAnchor(event.currentTarget); 
+    setMenuAnchor(event.currentTarget);
   };
 
   const handleMenuClose = () => {
@@ -58,7 +61,7 @@ const PaginatedTableRow: React.FC<PaginatedTableRowProps> = ({
   };
 
   const handleDelete = () => {
-    handleDeleteRow(order.id); 
+    handleDeleteRow(order.id);
     handleMenuClose();
   };
 
@@ -66,10 +69,13 @@ const PaginatedTableRow: React.FC<PaginatedTableRowProps> = ({
     <TableRow
       sx={{
         "&:hover": {
-          backgroundColor: "#F7F9FB",
+          backgroundColor: theme === "dark" ? "rgba(28,28,28,0.90)" : "#F7F9FB",
         },
-        backgroundColor: isSelected ? "#F7F9FB" : "inherit",
+        backgroundColor: theme === "dark" ? "rgba(28,28,28,0.95)" : "#F7F9FB",
         cursor: "pointer",
+        borderBottom: `1px solid ${
+          theme === "dark" ? "rgba(255, 255, 255, 0.2)" : "inherit"
+        }`,
       }}
       onClick={() => handleRowClick(order.id)}
       onMouseEnter={() => setHoveredRow(order.id)}
@@ -85,16 +91,31 @@ const PaginatedTableRow: React.FC<PaginatedTableRowProps> = ({
               : hoveredRow === order.id
               ? "visible"
               : "hidden",
-            color: "#1C1C1C",
+              color : theme === "dark"
+                    ? "rgba(198, 199, 248, 1)"
+                    : "rgba(28, 28, 28, 1)",
             "&.Mui-checked": {
-              color: "#1C1C1C",
+              color:
+                theme === "dark"
+                  ? "rgba(198, 199, 248, 1)"
+                  : "rgba(28, 28, 28, 1)",
             },
             borderRadius: "8px",
           }}
         />
       </TableCell>
-      <TableCell>{order.id}</TableCell>
-      <TableCell>
+      <TableCell
+        sx={{
+          color: theme === "dark" ? "#fff" : "inherit",
+        }}
+      >
+        {order.id}
+      </TableCell>
+      <TableCell
+        sx={{
+          color: theme === "dark" ? "#fff" : "inherit",
+        }}
+      >
         <Box display="flex" alignItems="center">
           <img
             src={order.icon}
@@ -109,20 +130,47 @@ const PaginatedTableRow: React.FC<PaginatedTableRowProps> = ({
           {order.user}
         </Box>
       </TableCell>
-      <TableCell>{order.project}</TableCell>
-      <TableCell>{order.address}</TableCell>
-      <TableCell>{order.date}</TableCell>
+      <TableCell
+        sx={{
+          color: theme === "dark" ? "#fff" : "inherit",
+        }}
+      >
+        {order.project}
+      </TableCell>
+      <TableCell
+        sx={{
+          color: theme === "dark" ? "#fff" : "inherit",
+        }}
+      >
+        {order.address}
+      </TableCell>
+      <TableCell
+        sx={{
+          color: theme === "dark" ? "#fff" : "inherit",
+        }}
+      >
+        {order.date}
+      </TableCell>
       <TableCell>
-        <Typography sx={{ color: order.statusColor }}>
+        <Typography
+          sx={{
+            color:
+              order.status === "Rejected"?
+                theme === "dark"
+                ? "rgba(255, 255, 255, 0.4)"
+                : order.statusColor
+                : order.statusColor,
+          }}
+        >
           {order.status}
         </Typography>
       </TableCell>
       <TableCell align="right">
         <IconButton
           sx={{ visibility: hoveredRow === order.id ? "visible" : "hidden" }}
-          onClick={(event) => handleMenuOpen(event, order.id)} 
+          onClick={(event) => handleMenuOpen(event, order.id)}
         >
-          <MoreHoriz />
+          <MoreHoriz sx={{ color: theme === "dark" ? "#ffffff" : "inherit"}}/>
         </IconButton>
         <Menu
           anchorEl={menuAnchor}
@@ -130,7 +178,7 @@ const PaginatedTableRow: React.FC<PaginatedTableRowProps> = ({
           onClose={handleMenuClose}
         >
           <MenuItem onClick={handleDelete}>Delete</MenuItem>
-          <MenuItem disabled >Edit</MenuItem>
+          <MenuItem disabled>Edit</MenuItem>
         </Menu>
       </TableCell>
     </TableRow>

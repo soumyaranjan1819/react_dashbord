@@ -11,30 +11,10 @@ import {
 } from 'chart.js';
 import { Box, Typography } from '@mui/material';
 import { useColorTheme } from '../context/ThemeContext'; 
+import { data } from '../data';
 
 // Register Chart.js components
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
-
-// Sample data
-const data = {
-  labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
-  datasets: [
-    {
-      label: 'Actuals',
-      data: [18, 22, 19, 25, 17, 22], 
-      backgroundColor: 'rgba(168, 197, 218, 1)',
-      barThickness: 20, 
-      borderRadius: { topRight: 0, topLeft: 0 },
-    },
-    {
-      label: 'Projections',
-      data: [22, 25, 23, 28, 19, 27],
-      backgroundColor: 'rgba(168, 197, 218, 0.5)',
-      barThickness: 20, 
-      borderRadius: { topRight: 4, topLeft: 4 },
-    },
-  ],
-};
 
 const options: ChartOptions<'bar'> = {
   plugins: {

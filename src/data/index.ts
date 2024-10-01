@@ -205,12 +205,50 @@ export const topSellingProducts: TopSellingProductsItems[] = [
   { name: "Marco Shoes", price: 79.49, quantity: 64, amount: 1965.81 },
 ];
 
+export const salesData = {
+  labels: ["Direct", "Affiliate", "Sponsored", "E-mail"],
+  datasets: [
+    {
+      label: "Total Sales",
+      data: [300.56, 135.18, 154.02, 48.96],
+      backgroundColor: [
+        "rgba(198, 199, 248, 1)",
+        "rgba(186, 237, 189, 1)",
+        "rgba(149, 164, 252, 1)",
+        "rgba(177, 227, 255, 1)",
+      ],
+      hoverOffset: 8,
+      borderWidth: 4,
+    },
+  ],
+};
+
 export const totalSales: TotalSalesItems[] = [
   { type: "Direct", amount: 300.56, percentage: 38.6 },
   { type: "Affiliate", amount: 135.18, percentage: 17.3 },
   { type: "Sponsored", amount: 154.02, percentage: 22.7 },
   { type: "E-mail", amount: 48.96, percentage: 12.4 },
 ];
+
+export const data = {
+  labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+  datasets: [
+    {
+      label: 'Actuals',
+      data: [18, 22, 19, 25, 17, 22], 
+      backgroundColor: 'rgba(168, 197, 218, 1)',
+      barThickness: 20, 
+      borderRadius: { topRight: 0, topLeft: 0 },
+    },
+    {
+      label: 'Projections',
+      data: [22, 25, 23, 28, 19, 27],
+      backgroundColor: 'rgba(168, 197, 218, 0.5)',
+      barThickness: 20, 
+      borderRadius: { topRight: 4, topLeft: 4 },
+    },
+  ],
+};
 
 export const orders: Order[] = [
   {

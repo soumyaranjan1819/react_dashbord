@@ -2,18 +2,16 @@ import { Grid } from "@mui/material";
 import LeftSidebar from "./features/LeftSideBar";
 import Main from "./features/Main";
 import RightSideBar from "./features/RightSideBar";
-// import OrderListTable from "./components/OrderListTable"; 
 import { useColorTheme } from "./context/ThemeContext";
 import { SidebarProvider } from "./context/SidebarContext";
-import { OrdersVisibilityProvider } from "./context/OrdersVisibilityContext"; 
+import { OrdersVisibilityProvider } from "./context/OrdersVisibilityContext";
 import { useSidebar } from "./hooks";
 import "./App.css";
 import "./styles/themes.css";
 
 const AppContent = () => {
-  const { leftSidebarOpen, rightSidebarOpen } = useSidebar(); // Access sidebar state from context
+  const { leftSidebarOpen, rightSidebarOpen } = useSidebar();
   const { theme } = useColorTheme();
-  // const { isOrderListVisible } = useOrderVisibility(); // Access order list visibility from context
 
   return (
     <div style={{ overflowY: "auto" }} className={theme}>
@@ -55,7 +53,7 @@ const AppContent = () => {
 function App() {
   return (
     <SidebarProvider>
-      <OrdersVisibilityProvider> 
+      <OrdersVisibilityProvider>
         <AppContent />
       </OrdersVisibilityProvider>
     </SidebarProvider>

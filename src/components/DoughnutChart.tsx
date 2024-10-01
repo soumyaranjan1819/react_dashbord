@@ -15,27 +15,9 @@ import {
   ListItemText,
 } from "@mui/material";
 import { useColorTheme } from "../context/ThemeContext";
+import { salesData } from "../data";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
-
-// Sample data for the donut chart
-const data = {
-  labels: ["Direct", "Affiliate", "Sponsored", "E-mail"],
-  datasets: [
-    {
-      label: "Total Sales",
-      data: [300.56, 135.18, 154.02, 48.96],
-      backgroundColor: [
-        "rgba(198, 199, 248, 1)",
-        "rgba(186, 237, 189, 1)",
-        "rgba(149, 164, 252, 1)",
-        "rgba(177, 227, 255, 1)",
-      ],
-      hoverOffset: 8,
-      borderWidth: 4,
-    },
-  ],
-};
 
 const options: ChartOptions<"doughnut"> = {
   cutout: "60%", 
@@ -102,12 +84,12 @@ const DonutChart = () => {
           justifyContent: "center",
         }}
       >
-        <Doughnut data={data} options={options} />
+        <Doughnut data={salesData} options={options} />
       </Box>
 
       {/* Dynamic Legend */}
       <List sx={{ width: "100%" }}>
-        {data.labels.map((label, index) => (
+        {salesData.labels.map((label, index) => (
           <ListItem
             key={label}
             sx={{
@@ -123,7 +105,7 @@ const DonutChart = () => {
                   sx={{
                     width: "8px",
                     height: "8px",
-                    backgroundColor: data.datasets[0].backgroundColor[index],
+                    backgroundColor: salesData.datasets[0].backgroundColor[index],
                     borderRadius: "50%",
                   }}
                 />
@@ -143,7 +125,7 @@ const DonutChart = () => {
                 fontWeight: "600",
               }}
             >
-              ${data.datasets[0].data[index].toFixed(2)}
+              ${salesData.datasets[0].data[index].toFixed(2)}
             </Typography>
           </ListItem>
         ))}

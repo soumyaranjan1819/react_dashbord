@@ -81,7 +81,7 @@ const RevenueMap = () => {
                 y={15}
                 style={{
                   fontFamily: "system-ui",
-                  fill: theme === "dark" ? "#FFFFFF" : "#5D5A6D", 
+                  fill: theme === "dark" ? "#FFFFFF" : "#5D5A6D",
                   fontSize: "10px",
                 }}
               >
@@ -105,7 +105,7 @@ const RevenueMap = () => {
                 variant="subtitle1"
                 sx={{
                   fontWeight: "bold",
-                  color: theme === "dark" ? "#FFFFFF" : "#000", 
+                  color: theme === "dark" ? "#FFFFFF" : "#000",
                 }}
               >
                 {city}
@@ -115,7 +115,7 @@ const RevenueMap = () => {
                 sx={{
                   mt: 1,
                   color: theme === "dark" ? "#B0B0B0" : "text.secondary",
-                }} 
+                }}
               >
                 {`${revenue}K`}
               </Typography>
@@ -129,9 +129,9 @@ const RevenueMap = () => {
                 backgroundColor:
                   theme === "dark"
                     ? "rgba(255, 255, 255, 0.2)"
-                    : "rgba(168, 197, 218, 0.5)", 
+                    : "rgba(168, 197, 218, 0.5)",
                 "& .MuiLinearProgress-bar": {
-                  backgroundColor: theme === "dark" ? "#4A90E2" : "#A8C5DA", 
+                  backgroundColor: theme === "dark" ? "#4A90E2" : "#A8C5DA",
                 },
               }}
             />

@@ -37,10 +37,14 @@ const Activities = () => {
           >
             <ListItemAvatar>
               <Avatar
-                sx={{ width: "40px", height: "40px", backgroundColor: "transparent" }}
+                sx={{
+                  width: "40px",
+                  height: "40px",
+                  backgroundColor: "transparent",
+                }}
               >
                 <img
-                  src={  activity.iconDark}
+                  src={activity.iconDark}
                   alt={activity.icon}
                   style={{ width: "24px", height: "24px" }}
                 />
@@ -62,7 +66,11 @@ const Activities = () => {
               }
               secondary={
                 <Typography
-                  color={theme === "dark" ? "rgba(255, 255, 255, 0.4)" : "rgba(28, 28, 28, 0.4)"}
+                  color={
+                    theme === "dark"
+                      ? "rgba(255, 255, 255, 0.4)"
+                      : "rgba(28, 28, 28, 0.4)"
+                  }
                   variant="caption"
                   sx={{ fontSize: "12px" }}
                 >
