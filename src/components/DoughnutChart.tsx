@@ -14,8 +14,8 @@ import {
   ListItemIcon,
   ListItemText,
 } from "@mui/material";
+import { useColorTheme } from "../context/ThemeContext";
 
-// Register Chart.js components
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 // Sample data for the donut chart
@@ -25,53 +25,63 @@ const data = {
     {
       label: "Total Sales",
       data: [300.56, 135.18, 154.02, 48.96],
-      backgroundColor: ["#000000", "#B5F1CC", "#A6D2FF", "#C6CBFF"],
-      hoverOffset: 4, // Increase hover offset
-
-      borderRadius: -10, // Rounded edges
-      borderAlign: "center", // Ensure borders are aligned consistently
-      spacing: 2, // Adds a bit of spacing between segments for better visibility of the rounded ends
+      backgroundColor: [
+        "rgba(198, 199, 248, 1)",
+        "rgba(186, 237, 189, 1)",
+        "rgba(149, 164, 252, 1)",
+        "rgba(177, 227, 255, 1)",
+      ],
+      hoverOffset: 8,
+      borderWidth: 4,
     },
   ],
 };
 
-// Chart options
 const options: ChartOptions<"doughnut"> = {
-  cutout: "70%", // Cutout to create the donut effect
+  cutout: "60%", 
   plugins: {
     tooltip: {
       enabled: true,
       callbacks: {
         label: function (tooltipItem) {
-          const label = tooltipItem.label || "";
           const value = tooltipItem.raw;
-
           const formattedValue =
             typeof value === "number" ? value.toFixed(2) : value;
-
-          return `${label}: $${formattedValue}`;
+          return `${formattedValue}`;
         },
       },
     },
     legend: {
-      display: false, // Disable default legend
+      display: false,
+    },
+  },
+  elements: {
+    arc: {
+      borderRadius: 4,
+      borderAlign: "center",
+      spacing: 2,
     },
   },
 };
 
-// Donut chart component
 const DonutChart = () => {
+  const { theme } = useColorTheme();
+
   return (
     <Box
       sx={{
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        backgroundColor: "#F4F9FF",
+        backgroundColor:
+          theme === "dark"
+            ? " rgba(255, 255, 255, 0.05) "
+            : "rgba(247, 249, 251, 1)",
         borderRadius: "16px",
-        width: "72%",
+        width: "74%",
         p: 2,
         marginTop: "24px",
+        marginLeft: "20px",
         gap: "16px",
       }}
     >
@@ -86,8 +96,8 @@ const DonutChart = () => {
       {/* Donut chart */}
       <Box
         sx={{
-          width: "120px",
-          height: "120px",
+          width: "150px", 
+          height: "150px", 
           display: "flex",
           justifyContent: "center",
         }}
@@ -98,31 +108,43 @@ const DonutChart = () => {
       {/* Dynamic Legend */}
       <List sx={{ width: "100%" }}>
         {data.labels.map((label, index) => (
-          <ListItem key={label}>
-            <ListItemIcon>
-              <Box
-                sx={{
-                  width: "8px",
-                  height: "8px",
-                  backgroundColor: data.datasets[0].backgroundColor[index],
-                  borderRadius: "50%",
+          <ListItem
+            key={label}
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              padding: "8px 32px",
+              marginBottom: "8px", 
+            }}
+          >
+            <Box sx={{ display: "flex", alignItems: "center", gap: "8px" }}>
+              <ListItemIcon sx={{ minWidth: "unset" }}>
+                <Box
+                  sx={{
+                    width: "8px",
+                    height: "8px",
+                    backgroundColor: data.datasets[0].backgroundColor[index],
+                    borderRadius: "50%",
+                  }}
+                />
+              </ListItemIcon>
+              <ListItemText
+                primary={label}
+                primaryTypographyProps={{
+                  fontSize: "12px",
+                  fontWeight: "600",
+                  display: "inline",
                 }}
               />
-            </ListItemIcon>
-            <ListItemText
-              primary={label}
-              secondary={`$${data.datasets[0].data[index].toFixed(2)}`}
-              primaryTypographyProps={{ fontSize: "12px", display: "flex" }}
-              secondaryTypographyProps={{
-                fontSize: "12px",
-                marginLeft: "0.5em",
-              }}
+            </Box>
+            <Typography
               sx={{
-                "& .MuiListItemText-primary, & .MuiListItemText-secondary": {
-                  display: "flex",
-                },
+                fontSize: "12px",
+                fontWeight: "600",
               }}
-            />
+            >
+              ${data.datasets[0].data[index].toFixed(2)}
+            </Typography>
           </ListItem>
         ))}
       </List>

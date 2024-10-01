@@ -26,7 +26,7 @@ const OrderList: React.FC = () => {
       {/* Pass state and handlers down to the table */}
       <PaginatedTable
         orders={orders}
-        setOrders={setOrders} // Pass setOrders to update the orders state in the parent
+        setOrders={setOrders} 
         selectedOrders={selectedOrders}
         setSelectedOrders={setSelectedOrders}
         handleDeleteSelected={handleDeleteSelected}

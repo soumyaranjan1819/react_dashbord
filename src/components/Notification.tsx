@@ -7,17 +7,21 @@ import {
   Typography,
   Box,
 } from "@mui/material";
-import { notificationsData } from "../data/index"; 
+import { notificationsData } from "../data/index";
+import { useColorTheme } from "../context/ThemeContext";
 
 const NotificationList = () => {
+  const { theme } = useColorTheme();
   return (
-    <Box sx={{
-        width: "240px", 
+    <Box
+      sx={{
+        width: "240px",
         height: "auto",
         borderRadius: "8px",
         display: "flex",
         flexDirection: "column",
-      }}>
+      }}
+    >
       <Typography
         variant="h6"
         ml={2}
@@ -33,7 +37,7 @@ const NotificationList = () => {
           >
             <ListItemAvatar>
               <Avatar
-                sx={{ width: "40px", height: "40px", backgroundColor: "#fff" }}
+                sx={{ width: "40px", height: "40px", backgroundColor: "transparent" }}
               >
                 <img
                   src={notification.icon}
@@ -49,7 +53,6 @@ const NotificationList = () => {
                   sx={{
                     fontWeight: "500",
                     fontSize: "14px",
-                    // marginBottom: "4px",
                   }}
                 >
                   {notification.message.length > 24
@@ -59,8 +62,13 @@ const NotificationList = () => {
               }
               secondary={
                 <Typography
+                  color={
+                    theme === "dark"
+                      ? "rgba(255, 255, 255, 0.4)"
+                      : "rgba(28, 28, 28, 0.4)"
+                  }
                   variant="caption"
-                  sx={{ fontSize: "12px", color: "rgba(28, 28, 28, 0.6)" }}
+                  sx={{ fontSize: "12px" }}
                 >
                   {notification.time}
                 </Typography>

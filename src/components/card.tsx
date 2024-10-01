@@ -1,12 +1,15 @@
 import { Card, CardContent, Typography, Box } from "@mui/material";
 import ArrowRise from "../assets/icons/ArrowRise.svg";
 import ArrowFall from "../assets/icons/ArrowFall.svg";
+import { useColorTheme } from '../context/ThemeContext';
 
 interface CardItemProps {
   title: string;
   value: string | number;
   growth: string;
   backgroundColor: string;
+  backgroundColorDark: string;
+  onClick?: () => void; 
 }
 
 const CardItem: React.FC<CardItemProps> = ({
@@ -14,11 +17,14 @@ const CardItem: React.FC<CardItemProps> = ({
   value,
   growth,
   backgroundColor,
+  backgroundColorDark,
+  onClick,
 }) => {
   const growthValue = parseFloat(growth);
   const isPositiveGrowth = growthValue > 0;
   const growthColor = isPositiveGrowth ? "green" : "red";
   const GrowthIcon = isPositiveGrowth ? ArrowRise : ArrowFall;
+  const { theme } = useColorTheme();
 
   return (
     <Card
@@ -29,8 +35,13 @@ const CardItem: React.FC<CardItemProps> = ({
         maxWidth: "14.02vw",
         height: "13.2vh",
         borderRadius: "16px",
-        backgroundColor: backgroundColor,
+        backgroundColor: theme === "dark" ? backgroundColorDark : backgroundColor,
         boxShadow: "none",
+        cursor: onClick ? "pointer" : "default", 
+        transition: "transform 0.2s", 
+        "&:hover": {
+          transform: onClick ? "scale(1.05)" : "none", 
+        },
       }}
     >
       <CardContent sx={{ padding: "16px" }}>
@@ -56,15 +67,13 @@ const CardItem: React.FC<CardItemProps> = ({
             {value}
           </Typography>
           <Box sx={{ display: "flex", alignItems: "center", gap: "4px" }}>
-
             <Typography variant="body2" sx={{ color: growthColor }}>
               {growth}
             </Typography>
-            
             <img
               src={GrowthIcon}
               alt="Growth icon"
-              style={{ width: "16px", height: "16px", color: "red" }}
+              style={{ width: "16px", height: "16px" }}
             />
           </Box>
         </Box>

@@ -1,8 +1,13 @@
 import UserProfileIcon from "../assets/icons/userProfile.svg";
+import DarkUserProfileIcon from "../assets/icons/IdentificationBadge_D.svg";
 import AccountIcon from "../assets/icons/account.svg";
+import DarkAccountIcon from "../assets/icons/IdentificationCard_D.svg";
 import CorporateIcon from "../assets/icons/corporate.svg";
+import DarkCorporateIcon from "../assets/icons/UsersThree_D.svg";
 import BlogIcon from "../assets/icons/blog.svg";
+import DarkBlogIcon from "../assets/icons/Notebook_D.svg";
 import SocialIcon from "../assets/icons/social.svg";
+import DarkSocialIcon from "../assets/icons/ChatsTeardrop_D.svg";
 import Natali from "../assets/icons/Natali.svg";
 import Drew from "../assets/icons/Drew.svg";
 import Orlando from "../assets/icons/Orlando.svg";
@@ -17,6 +22,11 @@ import User2 from "../assets/icons/3D08.svg";
 import User3 from "../assets/icons/Female05.svg";
 import User4 from "../assets/icons/Male07.svg";
 import User5 from "../assets/icons/Male11.svg";
+import DarkUser1 from "../assets/icons/3D05_D.svg";
+import DarkUser2 from "../assets/icons/3D08_D.svg";
+import DarkUser3 from "../assets/icons/Female05_D.svg";
+import DarkUser4 from "../assets/icons/Male07_D.svg";
+import DarkUser5 from "../assets/icons/Male11_D.svg";
 
 import {
   PagesItems,
@@ -34,12 +44,13 @@ export const pages: PagesItems[] = [
     id: "userProfile",
     label: "User Profile",
     icon: UserProfileIcon,
+    iconDark: DarkUserProfileIcon,
     subItems: ["Overview", "Projects", "Campaigns", "Documents", "Followers"],
   },
-  { id: "account", label: "Account", icon: AccountIcon, subItems: [] },
-  { id: "corporate", label: "Corporate", icon: CorporateIcon, subItems: [] },
-  { id: "blog", label: "Blog", icon: BlogIcon, subItems: [] },
-  { id: "social", label: "Social", icon: SocialIcon, subItems: [] },
+  { id: "account", label: "Account", icon: AccountIcon, iconDark: DarkAccountIcon, subItems: [] },
+  { id: "corporate", label: "Corporate", icon: CorporateIcon, iconDark: DarkCorporateIcon, subItems: [] },
+  { id: "blog", label: "Blog", icon: BlogIcon, iconDark: DarkBlogIcon, subItems: [] },
+  { id: "social", label: "Social", icon: SocialIcon, iconDark: DarkSocialIcon, subItems: [] },
 ];
 
 export const contactsData = [
@@ -57,30 +68,35 @@ export const activityData = [
     message: "You have a bug that needs to be resolved",
     time: "Just now",
     icon: User1,
+    iconDark : DarkUser1
   },
   {
     id: 2,
     message: "Released a new version",
     time: "59 minutes ago",
     icon: User2,
+    iconDark: DarkUser2
   },
   {
     id: 3,
     message: "Submitted a bug",
     time: "12 hours ago",
     icon: User3,
+    iconDark: DarkUser3
   },
   {
     id: 4,
     message: "Modified A data in Page X",
     time: "Today, 11:59 AM",
     icon: User4,
+    iconDark: DarkUser4
   },
   {
     id: 5,
     message: "Deleted a page in Project X",
     time: "Feb 2, 2023",
     icon: User5,
+    iconDark: DarkUser5
   },
 ];
 
@@ -118,6 +134,7 @@ export const statsData: StatsDataItem[] = [
     value: "3,781",
     growth: "+11.01%",
     backgroundColor: "#E3F5FF",
+    backgroundColorDark: "#E3F5FF"
   },
   {
     id: 2,
@@ -125,6 +142,7 @@ export const statsData: StatsDataItem[] = [
     value: "1,219",
     growth: "-0.03%",
     backgroundColor: "#F7F9FB",
+    backgroundColorDark: "rgba(255, 255, 255, 0.05)"
   },
   {
     id: 3,
@@ -132,6 +150,7 @@ export const statsData: StatsDataItem[] = [
     value: "$695",
     growth: "+15.03%",
     backgroundColor: "#F7F9FB",
+    backgroundColorDark: "rgba(255, 255, 255, 0.05)"
   },
   {
     id: 4,
@@ -139,6 +158,7 @@ export const statsData: StatsDataItem[] = [
     value: "30.1%",
     growth: "+6.08%",
     backgroundColor: "#E5ECF6",
+    backgroundColorDark: "#E5ECF6",
   },
 ];
 

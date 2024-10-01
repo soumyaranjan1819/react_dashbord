@@ -1,3 +1,4 @@
+// Dashboard.tsx
 import { useState } from "react";
 import {
   Box,
@@ -8,27 +9,44 @@ import {
   Typography,
   SvgIcon,
 } from "@mui/material";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight"; 
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import DashboardIcon from "../assets/icons/dashboardIcon.svg";
+import DarkDashboardIcon from "../assets/icons/ChartPieSlice_D.svg";
 import ShoppingCartIcon from "../assets/icons/shoppingCart.svg";
+import DarkShoppingCartIcon from "../assets/icons/ShoppingBagOpen_D.svg";
 import ProjectIcon from "../assets/icons/projectIcon.svg";
+import DarkProjectIcon from "../assets/icons/FolderNotch_D.svg";
 import BookIcon from "../assets/icons/bookIcon.svg";
+import DarkBookIcon from "../assets/icons/Notebook_D.svg";
+import { useColorTheme } from "../context/ThemeContext";
+import { useOrderVisibility } from "../context/OrdersVisibilityContext"; // Import visibility context
 
 const Dashboard = () => {
+  const { theme } = useColorTheme();
+  const { showOrderList, hideOrderList } = useOrderVisibility(); // Updated to use show and hide methods
   const [selectedTab, setSelectedTab] = useState("default");
 
   const tabs = [
-    { id: "default", label: "Default", icon: DashboardIcon },
-    { id: "ecommerce", label: "eCommerce", icon: ShoppingCartIcon },
-    { id: "projects", label: "Projects", icon: ProjectIcon },
-    { id: "courses", label: "Online Courses", icon: BookIcon },
+    { id: "default", label: "Default", icon: DashboardIcon, iconDark: DarkDashboardIcon },
+    { id: "ecommerce", label: "eCommerce", icon: ShoppingCartIcon, iconDark:DarkShoppingCartIcon },
+    { id: "projects", label: "Projects", icon: ProjectIcon , iconDark: DarkProjectIcon},
+    { id: "courses", label: "Online Courses", icon: BookIcon, iconDark: DarkBookIcon },
   ];
+
+  const handleTabClick = (tabId: string) => {
+    setSelectedTab(tabId);
+    if (tabId === "ecommerce") {
+      showOrderList(); // Show OrderListTable
+    } else {
+      hideOrderList(); // Hide OrderListTable
+    }
+  };
 
   return (
     <Box
       sx={{
         width: "180px",
-        height: "auto"
+        height: "auto",
       }}
     >
       <Box
@@ -39,8 +57,12 @@ const Dashboard = () => {
       >
         <Typography
           variant="h6"
+          color={
+            theme === "dark"
+              ? "rgba(255, 255, 255, 0.4)"
+              : "rgba(28, 28, 28, 0.4)"
+          }
           sx={{
-            color: "rgba(28, 28, 28, 0.4)",
             fontSize: "14px",
             fontWeight: "400",
           }}
@@ -54,7 +76,7 @@ const Dashboard = () => {
         {tabs.map((tab) => (
           <ListItem
             key={tab.id}
-            onClick={() => setSelectedTab(tab.id)}
+            onClick={() => handleTabClick(tab.id)}
             sx={{
               width: "180px",
               display: "flex",
@@ -64,9 +86,17 @@ const Dashboard = () => {
               marginBottom: "8px",
               cursor: "pointer",
               backgroundColor:
-                selectedTab === tab.id ? "#f5f5f5" : "transparent",
+                selectedTab === tab.id
+                  ? theme === "dark"
+                    ? "rgba(255, 255, 255, 0.1)"
+                    : "rgba(28, 28, 28, 0.1)"
+                  : "transparent",
+
               "&:hover": {
-                backgroundColor: "#f5f5f5",
+                backgroundColor:
+                  theme === "dark"
+                    ? "rgba(255, 255, 255, 0.1)"
+                    : "rgba(28, 28, 28, 0.1)",
               },
             }}
           >
@@ -76,9 +106,12 @@ const Dashboard = () => {
                 sx={{
                   width: "4px",
                   height: "24px",
-                  backgroundColor: "#000",
+                  backgroundColor:
+                    theme === "dark"
+                      ? "rgba(255, 255, 255)"
+                      : "rgba(28, 28, 28, 1)",
                   borderRadius: "8px",
-                  marginRight: "20px"
+                  marginRight: "20px",
                 }}
               />
             )}
@@ -87,13 +120,13 @@ const Dashboard = () => {
             {selectedTab !== tab.id && (
               <SvgIcon
                 component={ChevronRightIcon}
-                sx={{ color: "rgba(28, 28, 28, 0.2)" }}
+                sx={{ color: theme === "dark" ? "rgba(255, 255, 255, 0.2)" :"rgba(28, 28, 28, 0.2)" }}
               />
             )}
             {/* Icon and Text */}
             <ListItemIcon sx={{ minWidth: "32px" }}>
               <img
-                src={tab.icon}
+                src={theme === "dark" ? tab.iconDark : tab.icon}
                 alt={`${tab.label} icon`}
                 style={{ width: "24px", height: "24px" }}
               />
@@ -102,7 +135,10 @@ const Dashboard = () => {
               primary={tab.label}
               primaryTypographyProps={{
                 fontSize: "14px",
-                color: "rgba(28, 28, 28, 1)",
+                color:
+                  theme === "dark"
+                    ? "rgba(255, 255, 255, 1)"
+                    : "rgba(28, 28, 28, 1)",
               }}
             />
           </ListItem>

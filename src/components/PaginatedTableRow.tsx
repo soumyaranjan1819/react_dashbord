@@ -16,17 +16,17 @@ interface PaginatedTableRowProps {
   order: Order;
   selectedOrders: string[];
   setSelectedOrders: React.Dispatch<React.SetStateAction<string[]>>;
-  handleDeleteRow: (id: string) => void; // Add the delete handler
+  handleDeleteRow: (id: string) => void; 
 }
 
 const PaginatedTableRow: React.FC<PaginatedTableRowProps> = ({
   order,
   selectedOrders,
   setSelectedOrders,
-  handleDeleteRow, // Now it's part of the props
+  handleDeleteRow, 
 }) => {
-  const [hoveredRow, setHoveredRow] = useState<string | null>(null); // Track hovered row
-  const [menuAnchor, setMenuAnchor] = useState<null | HTMLElement>(null); // Menu anchor for 3-dot menu
+  const [hoveredRow, setHoveredRow] = useState<string | null>(null); 
+  const [menuAnchor, setMenuAnchor] = useState<null | HTMLElement>(null); 
 
   const isSelected = selectedOrders.includes(order.id);
 
@@ -41,16 +41,16 @@ const PaginatedTableRow: React.FC<PaginatedTableRowProps> = ({
 
   // Handle checkbox click
   const handleCheckboxClick = (event: React.MouseEvent, id: string) => {
-    event.stopPropagation(); // Prevent row click from being triggered
+    event.stopPropagation(); 
     handleRowClick(id);
   };
 
   // Handle 3-dot menu
   const handleMenuOpen = (
     event: React.MouseEvent<HTMLButtonElement>,
-    _rowId: string // Accept the row ID (order.id)
+    _rowId: string 
   ) => {
-    setMenuAnchor(event.currentTarget); // Set the anchor for the menu
+    setMenuAnchor(event.currentTarget); 
   };
 
   const handleMenuClose = () => {
@@ -58,7 +58,7 @@ const PaginatedTableRow: React.FC<PaginatedTableRowProps> = ({
   };
 
   const handleDelete = () => {
-    handleDeleteRow(order.id); // Call the delete handler passed from the parent
+    handleDeleteRow(order.id); 
     handleMenuClose();
   };
 
@@ -120,7 +120,7 @@ const PaginatedTableRow: React.FC<PaginatedTableRowProps> = ({
       <TableCell align="right">
         <IconButton
           sx={{ visibility: hoveredRow === order.id ? "visible" : "hidden" }}
-          onClick={(event) => handleMenuOpen(event, order.id)} // Pass both event and order.id
+          onClick={(event) => handleMenuOpen(event, order.id)} 
         >
           <MoreHoriz />
         </IconButton>

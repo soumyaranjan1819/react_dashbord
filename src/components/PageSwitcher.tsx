@@ -10,10 +10,12 @@ import {
 import CircleIcon from "@mui/icons-material/Circle";
 import { favoritePages } from "../data";
 import { recentPages } from "../data";
-
+import { useColorTheme } from "../context/ThemeContext";
 
 const PageSwitcher = () => {
   const [activeTab, setActiveTab] = useState("favorites");
+  const { theme } = useColorTheme();
+
   return (
     <Box
       sx={{
@@ -24,9 +26,9 @@ const PageSwitcher = () => {
       <Box
         sx={{
           display: "flex",
-          justifyContent: "space-between", 
+          justifyContent: "space-between",
           padding: "0 4px",
-          height: "28px", 
+          height: "28px",
         }}
       >
         <Box
@@ -49,7 +51,11 @@ const PageSwitcher = () => {
               lineHeight: "20px",
               color:
                 activeTab === "favorites"
-                  ? "rgba(28, 28, 28, 0.4)"
+                  ? theme === "dark"
+                    ? "rgba(255, 255, 255, 0.4)"
+                    : "rgba(28, 28, 28, 0.4)"
+                  : theme === "dark"
+                  ? "rgba(255, 255, 255, 0.2)"
                   : "rgba(28, 28, 28, 0.2)",
             }}
           >
@@ -77,7 +83,11 @@ const PageSwitcher = () => {
               lineHeight: "20px",
               color:
                 activeTab === "recent"
-                  ? "rgba(28, 28, 28, 0.4)"
+                  ? theme === "dark"
+                    ? "rgba(255, 255, 255, 0.4)"
+                    : "rgba(28, 28, 28, 0.4)"
+                  : theme === "dark"
+                  ? "rgba(255, 255, 255, 0.2)"
                   : "rgba(28, 28, 28, 0.2)",
             }}
           >
@@ -90,22 +100,24 @@ const PageSwitcher = () => {
         {(activeTab === "favorites" ? favoritePages : recentPages).map(
           (page, index) => (
             <ListItem
-            key={index}
-            sx={{
-              padding: '0 16px', 
-              display: 'flex',
-              alignItems: 'center',
-            }}
-          >
+              key={index}
+              sx={{
+                padding: "0 16px",
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
               <ListItemIcon sx={{ minWidth: "auto", marginRight: "8px" }}>
-                <CircleIcon sx={{ fontSize: "6px", color: "rgba(28, 28, 28, 0.2)" }} />
+                <CircleIcon
+                  sx={{ fontSize: "6px", color: "rgba(28, 28, 28, 0.2)" }}
+                />
               </ListItemIcon>
               <ListItemText
                 primary={page}
                 primaryTypographyProps={{
                   fontSize: "14px",
                   fontWeight: 400,
-                  color: "#1C1C1C",
+                  color: theme === "dark" ? "rgba(255, 255, 255, 1)" : "rgba(28, 28, 28, 1)" 
                 }}
               />
             </ListItem>

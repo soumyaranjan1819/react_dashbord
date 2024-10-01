@@ -1,11 +1,15 @@
+/* Global Light Theme */
 .light {
-    background-color: #fff;
-    color: #333;
-  }
-  
-  .dark {
-    background-color: #333;
-    color: #fff;
-    /* Define other dark theme colors and styles here */
-  }
-  
+  background-color: #fff;
+  color: #282828;
+}
+
+/* Global Dark Theme */
+.dark {
+  background-color: #282828;
+  color: #fff;
+}
+
+.darkBackground {
+  background-color: #323232;
+}

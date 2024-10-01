@@ -12,9 +12,12 @@ import {
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { pages } from "../data";
+import { useColorTheme } from '../context/ThemeContext';
+
 
 const Pages = () => {
   const [open, setOpen] = useState<string | null>(null);
+  const { theme } = useColorTheme(); 
 
   const handleToggle = (id: string) => {
     setOpen(open === id ? null : id);
@@ -35,8 +38,12 @@ const Pages = () => {
       >
         <Typography
           variant="h6"
+          color={
+            theme === "dark"
+              ? "rgba(255, 255, 255, 0.4)"
+              : "rgba(28, 28, 28, 0.4)"
+          }
           sx={{
-            color: "rgba(28, 28, 28, 0.4)",
             fontSize: "14px",
             fontWeight: "400",
           }}
@@ -67,11 +74,11 @@ const Pages = () => {
             >
               <SvgIcon
                 component={open === page.id ? ExpandMoreIcon : ChevronRightIcon}
-                sx={{ color: "rgba(28, 28, 28, 0.2)" }}
+                sx={{ color: theme === "dark" ? "rgba(255, 255, 255, 0.2)" : "rgba(28, 28, 28, 0.2)" }}
               />
               <ListItemIcon sx={{ minWidth: "32px" }}>
                 <img
-                  src={page.icon}
+                  src={ theme === "dark" ? page.iconDark : page.icon}
                   alt={`${page.label} icon`}
                   style={{ width: "24px", height: "24px" }}
                 />
@@ -96,7 +103,9 @@ const Pages = () => {
                         primary={subItem}
                         primaryTypographyProps={{
                           fontSize: "14px",
-                          color: "#1C1C1C",
+                          color: theme === "dark"
+                          ? "rgba(255, 255, 255, 1)"
+                          : "rgba(28, 28, 28, 1)"
                         }}
                       />
                     </ListItem>

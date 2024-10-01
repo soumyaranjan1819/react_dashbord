@@ -2,6 +2,7 @@ export interface PagesItems {
   id: string;
   label: string;
   icon: string;
+  iconDark: string;
   subItems: string[];
 }
 
@@ -16,6 +17,7 @@ export interface StatsDataItem {
   value: string;
   growth: string;
   backgroundColor: string;
+  backgroundColorDark: string;
 }
 
 export interface ProjectionsVsActualsItems {

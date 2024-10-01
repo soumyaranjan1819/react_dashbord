@@ -8,8 +8,10 @@ import {
   Box,
 } from "@mui/material";
 import { activityData } from "../data/index";
+import { useColorTheme } from "../context/ThemeContext";
 
 const Activities = () => {
+  const { theme } = useColorTheme();
   return (
     <Box
       sx={{
@@ -35,10 +37,10 @@ const Activities = () => {
           >
             <ListItemAvatar>
               <Avatar
-                sx={{ width: "40px", height: "40px", backgroundColor: "#fff" }}
+                sx={{ width: "40px", height: "40px", backgroundColor: "transparent" }}
               >
                 <img
-                  src={activity.icon}
+                  src={  activity.iconDark}
                   alt={activity.icon}
                   style={{ width: "24px", height: "24px" }}
                 />
@@ -51,7 +53,6 @@ const Activities = () => {
                   sx={{
                     fontWeight: "500",
                     fontSize: "14px",
-                    // marginBottom: "4px",
                   }}
                 >
                   {activity.message.length > 24
@@ -61,8 +62,9 @@ const Activities = () => {
               }
               secondary={
                 <Typography
+                  color={theme === "dark" ? "rgba(255, 255, 255, 0.4)" : "rgba(28, 28, 28, 0.4)"}
                   variant="caption"
-                  sx={{ fontSize: "12px", color: "rgba(28, 28, 28, 0.6)" }}
+                  sx={{ fontSize: "12px" }}
                 >
                   {activity.time}
                 </Typography>

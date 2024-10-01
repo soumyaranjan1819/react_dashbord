@@ -1,42 +1,64 @@
-import { Box, Grid } from "@mui/material";
+import { Grid } from "@mui/material";
 import LeftSidebar from "./features/LeftSideBar";
 import Main from "./features/Main";
-import { useState } from "react";
 import RightSideBar from "./features/RightSideBar";
+// import OrderListTable from "./components/OrderListTable"; 
 import { useColorTheme } from "./context/ThemeContext";
-import OrderListTable from "./components/OrderListTable";
+import { SidebarProvider } from "./context/SidebarContext";
+import { OrdersVisibilityProvider } from "./context/OrdersVisibilityContext"; 
+import { useSidebar } from "./hooks";
 import "./App.css";
-import './styles/themes.css';   //
+import "./styles/themes.css";
 
-function App() {
-  const [leftSidebarOpen, setLeftSidebarOpen] = useState(true);
-  const [rightSidebarOpen, setRightSidebarOpen] = useState(true);
-  const { theme } = useColorTheme();  //
+const AppContent = () => {
+  const { leftSidebarOpen, rightSidebarOpen } = useSidebar(); // Access sidebar state from context
+  const { theme } = useColorTheme();
+  // const { isOrderListVisible } = useOrderVisibility(); // Access order list visibility from context
+
   return (
-    <div style={{overflowY: "auto"}} className={theme}> 
+    <div style={{ overflowY: "auto" }} className={theme}>
       <Grid container>
-        <Grid item>
-          <LeftSidebar />
-        </Grid>
+        {/* Left Sidebar */}
+        {leftSidebarOpen && (
+          <Grid item>
+            <LeftSidebar />
+          </Grid>
+        )}
 
+        {/* Main Content */}
         <Grid
           item
           xs={
             leftSidebarOpen && rightSidebarOpen
               ? 8
-              : leftSidebarOpen || rightSidebarOpen
+              : leftSidebarOpen
               ? 10
+              : rightSidebarOpen
+              ? 10.46
               : 12
           }
         >
-          <Main/>
+          <Main />
         </Grid>
 
-        <Grid item xs={1.3} >
-        <RightSideBar/>
-      </Grid>
+        {/* Right Sidebar */}
+        {rightSidebarOpen && (
+          <Grid item xs={1.3}>
+            <RightSideBar />
+          </Grid>
+        )}
       </Grid>
     </div>
+  );
+};
+
+function App() {
+  return (
+    <SidebarProvider>
+      <OrdersVisibilityProvider> 
+        <AppContent />
+      </OrdersVisibilityProvider>
+    </SidebarProvider>
   );
 }
 

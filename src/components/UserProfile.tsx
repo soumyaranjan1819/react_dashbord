@@ -1,7 +1,9 @@
 import { Box, Avatar, Typography } from '@mui/material';
 import icon from '../assets/icons/userIcon.svg'; 
+import { useColorTheme } from "../context/ThemeContext";
 
 const UserProfile = () => {
+  const { theme } = useColorTheme(); 
     return (
       <Box
         display="flex"
@@ -30,7 +32,7 @@ const UserProfile = () => {
           fontWeight: 400,
           fontSize: '14px', 
           lineHeight: '20px', 
-          color: '#1c1c1c',
+          color: theme === "dark" ? "rgba(255, 255, 255, 1)" : "rgba(28, 28, 28, 1)" 
         }}
       >
         ByeWind

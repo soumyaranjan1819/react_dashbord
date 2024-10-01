@@ -13,21 +13,37 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import SideBarIcon from "../assets/icons/Sidebar.svg";
+import DarkSideBarIcon from "../assets/icons/Sidebar_D.svg";
+
 import StarIcon from "../assets/icons/Star.svg";
+import DarkStarIcon from "../assets/icons/Star_D.svg";
+
 import SearchIcon from "../assets/icons/Search.svg";
+import DarkSearchIcon from "../assets/icons/Search_D.svg";
+
 import BrightIcon from "../assets/icons/Sun.svg";
+import DarkBrightIcon from "../assets/icons/Sun_D.svg";
+
 import ReplayIcon from "../assets/icons/ClockCounterClockwise.svg";
+import DarkReplayIcon from "../assets/icons/ClockCounterClockwise_D.svg";
+
 import NotificationsIcon from "../assets/icons/Bell.svg";
-import MoreVertIcon from "@mui/icons-material/MoreVert"; 
-import { useTheme } from "@mui/material/styles"; 
-import { useColorTheme } from '../context/ThemeContext';
+import DarkNotificationsIcon from "../assets/icons/Bell_D.svg";
+
+import MoreVertIcon from "@mui/icons-material/MoreVert";
+
+import { useTheme } from "@mui/material/styles";
+import { useColorTheme } from "../context/ThemeContext";
+import { useSidebar } from "../hooks"; 
 
 const Navbar = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const isMenuOpen = Boolean(anchorEl);
-  const { toggleTheme } = useColorTheme();
-  const theme = useTheme(); // To access the theme breakpoints
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm")); 
+  const { theme, toggleTheme } = useColorTheme(); 
+  const muiTheme = useTheme(); 
+  const isMobile = useMediaQuery(muiTheme.breakpoints.down("sm"));
+
+  const { toggleLeftSidebar, toggleRightSidebar } = useSidebar();
 
   const handleMenuOpen = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
@@ -40,24 +56,43 @@ const Navbar = () => {
   return (
     <AppBar
       position="static"
+      className={theme === "dark" ? "dark" : "light"} 
       sx={{
-        backgroundColor: "white",
-        color: "black",
+        backgroundColor: theme === "dark" ? "#282828" : "#fff",
+        color: theme === "dark" ? "#fff" : "#282828",
         boxShadow: "none",
-        borderBottom: "1px solid rgba(28, 28, 28, 0.1)",
+        borderBottom:
+          theme === "dark"
+            ? "1px solid rgba(255, 255, 255, 0.1)"
+            : "1px solid rgba(28, 28, 28, 0.1)",
       }}
     >
       <Toolbar sx={{ justifyContent: "space-between" }}>
         {/* Left section: Menu, Star, and Breadcrumbs */}
         <Box sx={{ display: "flex", alignItems: "center", gap: "16px" }}>
-          {/* Menu icon */}
-          <IconButton edge="start" color="inherit" aria-label="menu">
-            <img src={SideBarIcon} alt="Sidebar Icon" width="24" height="24" />
+          {/* Menu icon to toggle the LeftSidebar */}
+          <IconButton
+            edge="start"
+            color="inherit"
+            aria-label="menu"
+            onClick={toggleLeftSidebar}
+          >
+            <img
+              src={theme === "dark" ? DarkSideBarIcon : SideBarIcon}
+              alt="Sidebar Icon"
+              width="24"
+              height="24"
+            />
           </IconButton>
 
           {/* Star icon */}
           <IconButton color="inherit">
-            <img src={StarIcon} alt="Star Icon" width="24" height="24" />
+            <img
+              src={theme === "dark" ? DarkStarIcon : StarIcon}
+              alt="Star Icon"
+              width="24"
+              height="24"
+            />
           </IconButton>
 
           {/* Breadcrumbs: Show only for tablets and larger devices */}
@@ -65,14 +100,25 @@ const Navbar = () => {
             <Breadcrumbs
               separator="/"
               aria-label="breadcrumb"
-              sx={{ color: "rgba(28, 28, 28, 0.6)" }}
+              sx={{
+                color:
+                  theme === "dark"
+                    ? "rgba(255, 255, 255, 0.6)"
+                    : "rgba(28, 28, 28, 0.6)",
+              }}
             >
               <Link underline="hover" color="inherit" href="#">
-                <Typography color="textSecondary" variant="body2">
+                <Typography
+                  color={theme === "dark" ? "white" : "black"}
+                  variant="body2"
+                >
                   Dashboards
                 </Typography>
               </Link>
-              <Typography color="black" variant="body2">
+              <Typography
+                color={theme === "dark" ? "white" : "black"}
+                variant="body2"
+              >
                 Default
               </Typography>
             </Breadcrumbs>
@@ -81,30 +127,43 @@ const Navbar = () => {
 
         {/* Right section: Search bar and icons */}
         <Box sx={{ display: "flex", alignItems: "center", gap: "16px" }}>
-          {/* Search bar: Show full search bar on tablets and above, only search icon on mobile */}
           <Box
+            className={theme === "dark" ? "lightdark" : ""} 
             sx={{
-              backgroundColor: "#f5f5f5",
+              backgroundColor: theme === "dark" ? "#323232" : "#f5f5f5",
               padding: "4px 8px",
               display: "flex",
               alignItems: "center",
               borderRadius: "8px",
-              width: isMobile ? "auto" : "200px", // Full search bar for larger screens
+              width: isMobile ? "auto" : "200px", 
             }}
           >
             {isMobile ? ( // Show only search icon for mobile devices
               <IconButton color="inherit">
-                <img src={SearchIcon} alt="Search Icon" width="24" height="24" />
+                <img
+                  src={theme === "dark" ? DarkSearchIcon : SearchIcon}
+                  alt="Search Icon"
+                  width="24"
+                  height="24"
+                />
               </IconButton>
             ) : (
               <>
-                <img src={SearchIcon} alt="Search Icon" width="16" height="16" />
+                <img
+                  src={theme === "dark" ? DarkSearchIcon : SearchIcon}
+                  alt="Search Icon"
+                  width="16"
+                  height="16"
+                />
                 <InputBase
                   placeholder="Search"
                   inputProps={{ "aria-label": "search" }}
                   sx={{
                     marginLeft: 1,
-                    color: "rgba(28, 28, 28, 0.4)",
+                    color:
+                      theme === "dark"
+                        ? "rgba(255, 255, 255, 0.6)"
+                        : "rgba(28, 28, 28, 0.4)",
                     fontSize: "14px",
                   }}
                 />
@@ -115,13 +174,42 @@ const Navbar = () => {
           {/* Icons: Hidden on medium and smaller screens (md and below) */}
           <Box sx={{ display: { xs: "none", md: "flex" }, gap: "16px" }}>
             <IconButton color="inherit" onClick={toggleTheme}>
-              <img src={BrightIcon} alt="Brightness Icon" width="24" height="24" />
+              <img
+                src={theme === "dark" ? DarkBrightIcon : BrightIcon}
+                alt="Brightness Icon"
+                width="24"
+                height="24"
+              />
             </IconButton>
             <IconButton color="inherit">
-              <img src={ReplayIcon} alt="Replay Icon" width="24" height="24" />
+              <img
+                src={theme === "dark" ? DarkReplayIcon : ReplayIcon}
+                alt="Replay Icon"
+                width="24"
+                height="24"
+              />
             </IconButton>
             <IconButton color="inherit">
-              <img src={NotificationsIcon} alt="Notifications Icon" width="24" height="24" />
+              <img
+                src={
+                  theme === "dark" ? DarkNotificationsIcon : NotificationsIcon
+                }
+                alt="Notifications Icon"
+                width="24"
+                height="24"
+              />
+            </IconButton>
+            <IconButton
+              color="inherit"
+              aria-label="right-sidebar"
+              onClick={toggleRightSidebar}
+            >
+              <img
+                src={theme === "dark" ? DarkSideBarIcon : SideBarIcon}
+                alt="Right Sidebar Icon"
+                width="24"
+                height="24"
+              />
             </IconButton>
           </Box>
 
@@ -146,13 +234,30 @@ const Navbar = () => {
             transformOrigin={{ vertical: "top", horizontal: "right" }}
           >
             <MenuItem onClick={handleMenuClose}>
-              <img src={BrightIcon} alt="Brightness Icon" width="24" height="24" />
+              <img
+                src={theme === "dark" ? DarkBrightIcon : BrightIcon}
+                alt="Brightness Icon"
+                width="24"
+                height="24"
+              />
             </MenuItem>
             <MenuItem onClick={handleMenuClose}>
-              <img src={ReplayIcon} alt="Replay Icon" width="24" height="24" />
+              <img
+                src={theme === "dark" ? DarkReplayIcon : ReplayIcon}
+                alt="Replay Icon"
+                width="24"
+                height="24"
+              />
             </MenuItem>
             <MenuItem onClick={handleMenuClose}>
-              <img src={NotificationsIcon} alt="Notifications Icon" width="24" height="24" />
+              <img
+                src={
+                  theme === "dark" ? DarkNotificationsIcon : NotificationsIcon
+                }
+                alt="Notifications Icon"
+                width="24"
+                height="24"
+              />
             </MenuItem>
           </Menu>
         </Box>

@@ -25,7 +25,7 @@ import { Order } from "../types";
 
 interface PaginatedTableProps {
   orders: Order[];
-  setOrders: React.Dispatch<React.SetStateAction<Order[]>>; // Add setOrders to modify the orders state
+  setOrders: React.Dispatch<React.SetStateAction<Order[]>>; 
   selectedOrders: string[];
   setSelectedOrders: React.Dispatch<React.SetStateAction<string[]>>;
   handleDeleteSelected: () => void;
@@ -68,7 +68,6 @@ const PaginatedTable: React.FC<PaginatedTableProps> = ({
         </Box>
 
         <Box display="flex" alignItems="center" ml="auto">
-          {/* Show delete icon only when more than 1 row is selected */}
           {selectedOrders.length > 1 && (
             <IconButton
               onClick={handleDeleteSelected}
@@ -85,8 +84,8 @@ const PaginatedTable: React.FC<PaginatedTableProps> = ({
               alignItems: "center",
               width: 300,
               padding: "0 8px",
-              border: "1px solid rgba(28, 28, 28, 0.2)", // Outline color
-              borderRadius: "8px", // Border radius
+              border: "1px solid rgba(28, 28, 28, 0.2)",
+              borderRadius: "8px", 
             }}
           >
             <IconButton>
@@ -137,7 +136,7 @@ const PaginatedTable: React.FC<PaginatedTableProps> = ({
                 order={order}
                 selectedOrders={selectedOrders}
                 setSelectedOrders={setSelectedOrders}
-                handleDeleteRow={handleDeleteRow} // Pass delete handler for single row
+                handleDeleteRow={handleDeleteRow} 
               />
             ))}
           </TableBody>

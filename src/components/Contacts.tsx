@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Typography, List, ListItem, ListItemText, ListItemIcon } from "@mui/material";
-import { contactsData } from "../data/index"; // Assuming the contactsData is stored in data folder
+import { contactsData } from "../data/index"; 
 
 const Contact: React.FC = () => {
   return (

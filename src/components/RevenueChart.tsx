@@ -2,6 +2,7 @@ import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer
 } from 'recharts';
 import { Box, Typography } from '@mui/material';
+import { useColorTheme } from '../context/ThemeContext';
 
 // Sample data (you can replace this with actual data)
 const data = [
@@ -14,11 +15,12 @@ const data = [
 ];
 
 const RevenueChart = () => {
+  const { theme } = useColorTheme(); 
   return (
     <Box sx={{
       marginTop:"24px",
       padding: '24px', 
-      backgroundColor: '#F4F9FF',
+      backgroundColor: theme === "dark"? 'rgba(255, 255, 255, 0.05)' :'rgba(247, 249, 251, 1)',
       borderRadius: '16px', 
       width: '90vw',
       maxWidth: '42.13vw', 
@@ -27,9 +29,9 @@ const RevenueChart = () => {
       boxSizing: 'border-box',
     }}>
       {/* Header Section */}
-      <Box display="flex" alignItems="center" justifyContent="space-around" mb={2} ml={2}>
+      <Box display="flex" alignItems="center" justifyContent="space-around" mb={2} >
         {/* Title */}
-        <Typography variant="h6" fontWeight="600" color="rgba(28, 28, 28, 1)">
+        <Typography variant="h6" fontWeight="600" color= {theme === "dark"? "rgba(255, 255, 255, 1)" : "rgba(28, 28, 28, 1)"}>
           Revenue
         </Typography>
 
@@ -42,7 +44,7 @@ const RevenueChart = () => {
                 width: 8,
                 height: 8,
                 borderRadius: '50%',
-                backgroundColor: 'rgba(28, 28, 28, 1)',
+                backgroundColor: theme === "dark"? 'rgba(255,255,255,1)' : 'rgba(28, 28, 28, 1)',
                 display: 'inline-block',
                 marginRight: '8px',
               }}
@@ -85,8 +87,8 @@ const RevenueChart = () => {
                 fontSize: 12, 
                 fontWeight: 400, 
                 fontFamily: 'Inter', 
-                fill: 'rgba(28, 28, 28, 0.4)', // Black with 40% opacity
-                textAnchor: 'end' // Aligns text to the right
+                fill: 'rgba(28, 28, 28, 0.4)', 
+                textAnchor: 'end' 
               }} 
             />
             
@@ -99,7 +101,7 @@ const RevenueChart = () => {
                 fontSize: 12, 
                 fontWeight: 400, 
                 fontFamily: 'Inter', 
-                fill: 'rgba(28, 28, 28, 0.4)', // Black with 40% opacity
+                fill: theme === "dark"? 'rgba(255,255,255,0.4)' : 'rgba(28, 28, 28, 0.4)', 
                 textAnchor: 'end'
               }}
             />
@@ -108,7 +110,7 @@ const RevenueChart = () => {
               contentStyle={{
                 fontSize: '12px',
                 fontFamily: 'Inter',
-                color: 'rgba(28, 28, 28, 0.6)' // Slightly darker for tooltip text
+                color: 'rgba(28, 28, 28, 0.6)' 
               }}
             />
             
@@ -117,20 +119,20 @@ const RevenueChart = () => {
               dataKey="currentWeek"
               stroke="rgba(168, 197, 218, 1)"
               strokeWidth={2}
-              dot={false} // Removes the dot markers from the currentWeek line
-              animationDuration={1500} // 1.5 seconds animation duration
-              animationEasing="ease-out" // Easing effect for smoother animation
+              dot={false} 
+              animationDuration={1500} 
+              animationEasing="ease-out" 
             />
             
             <Line
               type="monotone"
               dataKey="previousWeek"
-              stroke="rgba(28, 28, 28, 1)"
+              stroke= {theme === "dark"? "rgba(255, 255, 255, 1)" : "rgba(28, 28, 28, 1)"}
               strokeWidth={2}
               strokeDasharray="3 4 5 2"
-              dot={false} // Removes the dot markers from the previousWeek line
-              animationDuration={1500} // 1.5 seconds animation duration
-              animationEasing="ease-out" // Easing effect for smoother animation
+              dot={false} 
+              animationDuration={1500} 
+              animationEasing="ease-out" 
             />
             
           </LineChart>

@@ -10,6 +10,7 @@ import {
   ChartOptions,
 } from 'chart.js';
 import { Box, Typography } from '@mui/material';
+import { useColorTheme } from '../context/ThemeContext'; 
 
 // Register Chart.js components
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
@@ -35,7 +36,6 @@ const data = {
   ],
 };
 
-// Chart options with explicit typing
 const options: ChartOptions<'bar'> = {
   plugins: {
     legend: {
@@ -81,12 +81,13 @@ const options: ChartOptions<'bar'> = {
 };
 
 const Charts = () => {
+  const { theme } = useColorTheme(); 
   return (
     <Box
       sx={{
         maxWidth: '30vw',
         height: '252px',
-        backgroundColor: '#F4F9FF',
+        backgroundColor: theme === "dark"? 'rgba(255, 255, 255, 0.05)' :'rgba(247, 249, 251, 1)',
         borderRadius: '16px',
         padding: '16px',
       }}
